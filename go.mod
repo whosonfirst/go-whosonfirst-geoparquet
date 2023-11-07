@@ -9,10 +9,10 @@ require (
 	github.com/tidwall/sjson v1.2.5
 	github.com/whosonfirst/go-whosonfirst-iterate-organization v1.1.1
 	github.com/whosonfirst/go-whosonfirst-iterate/v2 v2.3.4
-	github.com/whosonfirst/go-whosonfirst-iterwriter v0.0.15
+	github.com/whosonfirst/go-whosonfirst-iterwriter v0.0.16
 	github.com/whosonfirst/go-whosonfirst-spr/v2 v2.3.6
 	github.com/whosonfirst/go-whosonfirst-uri v1.3.0
-	github.com/whosonfirst/go-writer-featurecollection/v3 v3.0.1
+	github.com/whosonfirst/go-writer-featurecollection/v3 v3.0.2
 	github.com/whosonfirst/go-writer/v3 v3.1.0
 )
 
@@ -56,7 +56,7 @@ require (
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
 	github.com/natefinch/atomic v1.0.1 // indirect
-	github.com/paulmach/orb v0.8.0 // indirect
+	github.com/paulmach/orb v0.10.0 // indirect
 	github.com/pjbgf/sha1cd v0.2.3 // indirect
 	github.com/sergi/go-diff v1.1.0 // indirect
 	github.com/sfomuseum/go-edtf v1.1.1 // indirect
@@ -74,6 +74,7 @@ require (
 	github.com/whosonfirst/go-whosonfirst-sources v0.1.0 // indirect
 	github.com/whosonfirst/walk v0.0.2 // indirect
 	github.com/xanzy/ssh-agent v0.3.3 // indirect
+	go.mongodb.org/mongo-driver v1.11.4 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	gocloud.dev v0.34.0 // indirect
 	golang.org/x/crypto v0.11.0 // indirect

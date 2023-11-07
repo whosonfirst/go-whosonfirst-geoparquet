@@ -68,9 +68,9 @@ do
     FEATURES_ARGS="${FEATURES_ARGS} ${SRC}"
 done
 
-GPQ_ARGS="-from geojson -to geoparquet -to /usr/local/data/${NAME}.geoparquet"
+GPQ_ARGS="convert -from geojson -to geoparquet -to /usr/local/data/${NAME}.geoparquet"
 
-echo "wof-geoparquet-features ${FEATURES_ARGS} | gpq ${TIPPECANOE_ARGS}"
+echo "wof-geoparquet-features ${FEATURES_ARGS} | gpq ${GPQ_ARGS}"
 
 wof-geoparquet-features ${FEATURES_ARGS} | gpq ${GPQ_ARGS}
 

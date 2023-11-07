@@ -2,7 +2,7 @@ package features
 
 import (
 	"flag"
-	
+
 	"github.com/sfomuseum/go-flags/multi"
 	"github.com/whosonfirst/go-whosonfirst-iterwriter/application/iterwriter"
 )

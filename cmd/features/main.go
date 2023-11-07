@@ -12,7 +12,7 @@ import (
 	"context"
 	"log"
 
-	"github.com/whosonfirst/go-whosonfirst-geoparquet/app/features"	
+	"github.com/whosonfirst/go-whosonfirst-geoparquet/app/features"
 )
 
 func main() {

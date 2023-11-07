@@ -17,10 +17,11 @@ import (
 )
 
 type RunOptions struct {
-	Logger       *log.Logger
-	FlagSet      *flag.FlagSet
-	CallbackFunc iterwriter.IterwriterCallbackFunc
-	Writer       writer.Writer
+	Logger          *log.Logger
+	FlagSet         *flag.FlagSet
+	FlagSetIsParsed bool
+	CallbackFunc    iterwriter.IterwriterCallbackFunc
+	Writer          writer.Writer
 }
 
 func Run(ctx context.Context, logger *log.Logger) error {
@@ -43,7 +44,9 @@ func RunWithOptions(ctx context.Context, opts *RunOptions) error {
 
 	fs := opts.FlagSet
 
-	flagset.Parse(fs)
+	if !opts.FlagSetIsParsed {
+		flagset.Parse(fs)
+	}
 
 	err := flagset.SetFlagsFromEnvVars(fs, "WOF")
 

@@ -10,8 +10,8 @@ import (
 	"log"
 
 	"github.com/sfomuseum/go-flags/flagset"
+	"github.com/whosonfirst/go-whosonfirst-geoparquet"
 	"github.com/whosonfirst/go-whosonfirst-iterwriter/application/iterwriter"
-	"github.com/whosonfirst/go-whosonfirst-geoparquet"	
 )
 
 func Run(ctx context.Context, logger *log.Logger) error {
@@ -33,9 +33,10 @@ func RunWithFlagSet(ctx context.Context, fs *flag.FlagSet, logger *log.Logger) e
 	cb := geoparquet.IterwriterCallbackFuncBuilder(cb_opts)
 
 	opts := &iterwriter.RunOptions{
-		Logger:       logger,
-		FlagSet:      fs,
-		CallbackFunc: cb,
+		Logger:          logger,
+		FlagSet:         fs,
+		FlagSetIsParsed: true,
+		CallbackFunc:    cb,
 	}
 
 	err := iterwriter.RunWithOptions(ctx, opts)

@@ -11,7 +11,7 @@ RUN apk update && apk upgrade \
     #
     && git clone https://github.com/planetlabs/gpq.git \
     && cd gpq \
-    && go build -mod vendor -ldflags="-s -w" -o /usr/local/bin/gpq cmd/features/main.go \
+    && go build -ldflags="-s -w" -o /usr/local/bin/gpq cmd/gpq/main.go \
     && cd - \
     && rm -rf /gpq \
     #
@@ -29,7 +29,7 @@ VOLUME /usr/local/data
 
 RUN apk update && apk upgrade 
 
-COPY --from=builder /usr/local/bin/wof-tippecanoe-features /usr/local/bin/wof-tippecanoe-features
+COPY --from=builder /usr/local/bin/wof-geoparquet-features /usr/local/bin/wof-geoparquet-features
 COPY --from=builder /usr/local/bin/gpq /usr/local/bin/gpq
 COPY --from=builder /usr/local/bin/copy-uri /usr/local/bin/copy-uri
 
