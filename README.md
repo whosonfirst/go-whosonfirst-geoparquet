@@ -22,4 +22,8 @@ $> ./bin/features \
 
 ## See also
 
-* https://github.com/planetlabs/gpq/tree/main
+* https://github.com/whosonfirst/go-whosonfirst-iterwriter
+* https://github.com/whosonfirst/go-whosonfirst-iterate
+* https://github.com/whosonfirst/go-whosonfirst-iterate-organization
+* https://github.com/whosonfirst/go-writer-featurecollection
+* https://github.com/planetlabs/gpq
