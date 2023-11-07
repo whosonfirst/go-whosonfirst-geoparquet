@@ -56,7 +56,7 @@ fi
 
 echo "Import ${SOURCE} FROM ${ITERATOR} as ${NAME} and copy to ${TARGET}"
 
-FEATURES_ARGS="-as-spr -require-polygons -writer-uri constant://?val=geojson://?writer=stdout:// -iterator-uri ${ITERATOR}"
+FEATURES_ARGS="-as-spr -writer-uri constant://?val=featurecollection://?writer=stdout:// -iterator-uri ${ITERATOR}"
 
 for PROP in ${PROPERTIES}
 do
@@ -68,7 +68,7 @@ do
     FEATURES_ARGS="${FEATURES_ARGS} ${SRC}"
 done
 
-GPQ_ARGS="convert -from geojson -to geoparquet -to /usr/local/data/${NAME}.geoparquet"
+GPQ_ARGS="convert -from geojson -to geoparquet /usr/local/data/${NAME}.geoparquet"
 
 echo "wof-geoparquet-features ${FEATURES_ARGS} | gpq ${GPQ_ARGS}"
 
