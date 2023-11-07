@@ -56,7 +56,7 @@ fi
 
 echo "Import ${SOURCE} FROM ${ITERATOR} as ${NAME} and copy to ${TARGET}"
 
-FEATURES_ARGS="-as-spr -require-polygons -writer-uri constant://?val=jsonl://?writer=stdout:// -iterator-uri ${ITERATOR}"
+FEATURES_ARGS="-as-spr -require-polygons -writer-uri constant://?val=geojson://?writer=stdout:// -iterator-uri ${ITERATOR}"
 
 for PROP in ${PROPERTIES}
 do

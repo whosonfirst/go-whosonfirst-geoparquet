@@ -6,7 +6,6 @@ package main
 import (
 	_ "github.com/whosonfirst/go-whosonfirst-iterate-organization"
 	_ "github.com/whosonfirst/go-writer-featurecollection/v3"
-	_ "github.com/whosonfirst/go-writer-jsonl/v3"
 )
 
 import (
