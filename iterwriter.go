@@ -112,6 +112,32 @@ func IterwriterCallbackFuncBuilder(opts *IterwriterCallbackFuncBuilderOptions) i
 					}
 				}
 
+				// Because the (internal) geoparquet/arrow schema builder is sad when it encounters empty arrays
+				// https://github.com/planetlabs/gpq/blob/main/internal/pqutil/arrow.go#L158-L165
+
+				ensure_length := []string{
+					"properties.wof:supersedes",
+					"properties.wof:superseded_by",
+				}
+
+				for _, path := range ensure_length {
+
+					rsp := gjson.GetBytes(body, path)
+
+					if !rsp.Exists() {
+						continue
+					}
+
+					if len(rsp.Array()) == 0 {
+
+						body, err = sjson.DeleteBytes(body, path)
+
+						if err != nil {
+							return fmt.Errorf("Failed to delete 0-length %s property, %w", path, err)
+						}
+					}
+				}
+
 				br := bytes.NewReader(body)
 				r = br
 			}
