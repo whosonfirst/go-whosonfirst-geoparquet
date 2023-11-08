@@ -20,6 +20,8 @@ $> ./bin/features \
 	> flights-2023.geoparquet
 ```
 
+And the loading the `flights-2023.geoparquet` database in [DuckDB](https://duckdb.org/docs/extensions/spatial.html):
+
 ```
 $> duckdb
 v0.8.1 6536a77232
@@ -56,3 +58,4 @@ D SELECT "wof:name", ST_GeomFromWkb(geometry) AS geometry FROM read_parquet('fli
 * https://github.com/whosonfirst/go-whosonfirst-iterate-organization
 * https://github.com/whosonfirst/go-writer-featurecollection
 * https://github.com/planetlabs/gpq
+* https://duckdb.org/
