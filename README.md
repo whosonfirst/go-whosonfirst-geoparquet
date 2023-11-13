@@ -117,3 +117,4 @@ D
 * https://github.com/whosonfirst/go-writer-featurecollection
 * https://github.com/planetlabs/gpq
 * https://duckdb.org/
+* https://duckdb.org/docs/extensions/spatial.html
