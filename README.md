@@ -73,6 +73,35 @@ $> ./bin/features \
 		> us.geoparquet
 ```
 
+And then:
+
+```
+$> duckdb
+v0.9.1 401c8061c6
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+
+D LOAD spatial;
+
+D SELECT CAST("wof:id" AS BIGINT), "wof:name", "wof:placetype" FROM read_parquet('us.geoparquet') WHERE ST_Within(ST_GeomFromText('POINT(-122.395268 37.794893)'), 
+100% ▕████████████████████████████████████████████████████████████▏ 
+┌──────────────────────────┬────────────────────────────────┬───────────────┐
+│ CAST("wof:id" AS BIGINT) │            wof:name            │ wof:placetype │
+│          int64           │            varchar             │    varchar    │
+├──────────────────────────┼────────────────────────────────┼───────────────┤
+│                102087579 │ San Francisco                  │ county        │
+│               1108830801 │ Downtown                       │ macrohood     │
+│               1360665447 │ San Francisco-Oakland-San Jose │ marketarea    │
+│                420561633 │ Super Bowl City                │ microhood     │
+│                 85633793 │ United States                  │ country       │
+│                 85688637 │ California                     │ region        │
+│                 85865899 │ Financial District             │ neighbourhood │
+│                 85922583 │ San Francisco                  │ locality      │
+└──────────────────────────┴────────────────────────────────┴───────────────┘
+D
+```
+
 ## See also
 
 * https://github.com/whosonfirst/go-whosonfirst-iterwriter
