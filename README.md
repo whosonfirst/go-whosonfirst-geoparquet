@@ -73,6 +73,13 @@ $> ./bin/features \
 		> us.geoparquet
 ```
 
+Which will encode all of the `whosonfirst-data-admin-us` repository as a geoparquet file:
+
+```
+$> du -h us.geoparquet 
+546M	us.geoparquet
+```
+
 And then:
 
 ```
