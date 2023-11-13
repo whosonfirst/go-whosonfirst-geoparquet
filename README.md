@@ -51,6 +51,28 @@ D SELECT "wof:name", ST_GeomFromWkb(geometry) AS geometry FROM read_parquet('fli
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
+There is also a handy `index` target in the Makefile for wrapping some of the details creating geoparquet files. For example, this:
+
+```
+$> make index SOURCE='whosonfirst-data://?prefix=whosonfirst-data-admin-us' DEST=us.geoparquet
+```
+
+Will execute this:
+
+```
+$> ./bin/features \
+		-as-spr \
+		-monitor-uri null:// \
+		-writer-uri 'constant://?val=featurecollection://?writer=stdout://' \
+		-iterator-uri org:///tmp \
+		"whosonfirst-data://?prefix=whosonfirst-data-admin-us" \
+		| \
+		gpq convert \
+		--from geojson \
+		--to geoparquet \
+		> us.geoparquet
+```
+
 ## See also
 
 * https://github.com/whosonfirst/go-whosonfirst-iterwriter
