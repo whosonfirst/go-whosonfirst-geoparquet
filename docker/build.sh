@@ -56,11 +56,11 @@ do
     FEATURES_ARGS="${FEATURES_ARGS} ${SRC}"
 done
 
-GPQ_ARGS="convert --from geojson /usr/local/data/${NAME}.geoparquet"
+GPQ_ARGS="convert --from geojson --to geoparquet"
 
-echo "wof-geoparquet-features ${FEATURES_ARGS} | gpq ${GPQ_ARGS}"
+echo "wof-geoparquet-features ${FEATURES_ARGS} | gpq ${GPQ_ARGS} > /usr/local/data/${NAME}.geoparquet"
 
-wof-geoparquet-features ${FEATURES_ARGS} | gpq ${GPQ_ARGS}
+wof-geoparquet-features ${FEATURES_ARGS} | gpq ${GPQ_ARGS} > /usr/local/data/${NAME}.geoparquet
 
 if [ $? -ne 0 ]
 then
