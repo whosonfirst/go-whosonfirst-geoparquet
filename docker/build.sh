@@ -3,29 +3,20 @@
 SOURCES=""		# for example: -s 'sfomuseum-data://?prefix=sfomuseum-data-whosonfirst'
 TARGET=""		# for example: -t s3blob://bucket?region=us-east-1&credentials=iam:
 
-WRITE_FEATURES=""
 HELP=""
 
 NAME="whosonfirst"	# for example -n whosonfirst"
 ITERATOR="org:///tmp"
-ZOOM="12"
 
-LAYER_NAME=""	# tippecanoe layer name
 PROPERTIES=""	# for example: -p 'wof:hierarchy wof:concordances'
 
-while getopts "i:l:n:p:s:t:z:fh" opt; do
+while getopts "i:n:p:s:t:h" opt; do
     case "$opt" in
-	f)
-	    WRITE_FEATURES=1
-	    ;;
 	h)
 	    HELP=1
 	    ;;
 	i)
 	    ITERATOR=$OPTARG
-	    ;;
-	l)
-	    LAYER_NAME=$OPTARG
 	    ;;
 	n)
 	    NAME=$OPTARG
@@ -38,9 +29,6 @@ while getopts "i:l:n:p:s:t:z:fh" opt; do
 	    ;;
 	t )
 	    TARGET=$OPTARG
-	    ;;
-	z )
-	    ZOOM=$OPTARG
 	    ;;
 	: )
 	    echo "WHAT"
@@ -68,7 +56,7 @@ do
     FEATURES_ARGS="${FEATURES_ARGS} ${SRC}"
 done
 
-GPQ_ARGS="convert -from geojson /usr/local/data/${NAME}.geoparquet"
+GPQ_ARGS="convert --from geojson /usr/local/data/${NAME}.geoparquet"
 
 echo "wof-geoparquet-features ${FEATURES_ARGS} | gpq ${GPQ_ARGS}"
 
