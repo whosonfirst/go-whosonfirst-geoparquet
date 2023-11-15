@@ -2,6 +2,8 @@
 
 Go package to produce `planetlabs/gpq` -compatible input to generate GeoParquet files using the `whosonfirst/go-whosonfirst-iterwriter` and `whosonfirst/go-writer-featurecollection` packages.
 
+_This should still be considered work in progress. Things are settling down but might still change._
+
 ## Example
 
 Used in conjunction with the [planetlabs/gpq](https://github.com/planetlabs/gpq) tool. The hope is that [the internals of the `gpq` tool will be exposed as public-facing library code](https://github.com/planetlabs/gpq/issues/113) so that the final database can be written in a single command. That is still not possible today.
@@ -44,6 +46,8 @@ $> ./bin/features \
 ```
 
 As of this writing it is not currently possible to use the `whosonfirst/go-whosonfirst-iterator-organization` to loop through multiple repositories and create multiple per-respository outputs. 
+
+If you need to import custom, or non-standard `iterator` implementations have a look at the code for the [cmd/features/main.go](cmd/features/main.go) tool for an example of how to do that.
 
 ### DuckDB
 
