@@ -8,9 +8,11 @@ HELP=""
 NAME="whosonfirst"	# for example -n whosonfirst"
 ITERATOR="org:///tmp"
 
+SKIP_INVALID_SPR=""
+
 PROPERTIES=""	# for example: -p 'wof:hierarchy wof:concordances'
 
-while getopts "i:n:p:s:t:h" opt; do
+while getopts "i:n:p:s:t:hS" opt; do
     case "$opt" in
 	h)
 	    HELP=1
@@ -26,6 +28,9 @@ while getopts "i:n:p:s:t:h" opt; do
 	    ;;
 	s )
 	    SOURCES=$OPTARG
+	    ;;
+	S )
+	    SKIP_INVALID_SPR=1
 	    ;;
 	t )
 	    TARGET=$OPTARG
@@ -45,6 +50,11 @@ fi
 echo "Import ${SOURCE} FROM ${ITERATOR} as ${NAME} and copy to ${TARGET}"
 
 FEATURES_ARGS="-as-spr -writer-uri constant://?val=featurecollection://?writer=stdout:// -iterator-uri ${ITERATOR}"
+
+if [ "${SKIP_INVALID_SPR}" = "1" ]
+then
+    FEATURES_ARGS="${FEATURE_ARGS} -skip-invalid-spr"
+fi
 
 for PROP in ${PROPERTIES}
 do
