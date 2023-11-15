@@ -53,7 +53,7 @@ FEATURES_ARGS="-as-spr -writer-uri constant://?val=featurecollection://?writer=s
 
 if [ "${SKIP_INVALID_SPR}" = "1" ]
 then
-    FEATURES_ARGS="${FEATURE_ARGS} -skip-invalid-spr"
+    FEATURES_ARGS="${FEATURES_ARGS} -skip-invalid-spr"
 fi
 
 for PROP in ${PROPERTIES}
