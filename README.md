@@ -125,7 +125,7 @@ Use ".open FILENAME" to reopen on a persistent database.
 
 D LOAD spatial;
 
-D SELECT CAST("wof:id" AS BIGINT), "wof:name", "wof:placetype" FROM read_parquet('us.geoparquet') WHERE ST_Within(ST_GeomFromText('POINT(-122.395268 37.794893)'), 
+D SELECT CAST("wof:id" AS BIGINT), "wof:name", "wof:placetype" FROM read_parquet('us.geoparquet') WHERE ST_Within(ST_GeomFromText('POINT(-122.395268 37.794893)'), ST_GeomFromWkb(geometry))
 100% ▕████████████████████████████████████████████████████████████▏ 
 ┌──────────────────────────┬────────────────────────────────┬───────────────┐
 │ CAST("wof:id" AS BIGINT) │            wof:name            │ wof:placetype │
