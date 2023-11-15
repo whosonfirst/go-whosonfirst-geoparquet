@@ -77,7 +77,7 @@ func IterwriterCallbackFuncBuilder(opts *IterwriterCallbackFuncBuilderOptions) i
 					if err != nil {
 
 						if opts.SkipInvalidSPR {
-							log.Printf("Failed to create SPR for %s, %w", path, err)
+							log.Printf("Failed to create SPR for %s, %v", path, err)
 							return nil
 						}
 
