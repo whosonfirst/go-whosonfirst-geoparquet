@@ -21,7 +21,31 @@ $> ./bin/features \
 	> flights-2023.geoparquet
 ```
 
-_Note the `-skip-invalid-spr` flag. This is a convenience flag to account for the fact that the code to derive [a "standard places response" (SPR)](https://github.com/whosonfirst/go-whosonfirst-spr) from a Who's On First (WOF) style document is very strict particularly about Extended DateTime Format (EDTF) dates. While there shouldn't be any invalid EDTF dates in WOF documents the reality is that sometimes there are. If you are comfortable with dropping (n) number of documents from your final GeoParquet file because it is easier or faster than tracking down and fixing errant dates you should use this flag._
+### Notes
+
+#### The `-skip-invalid-spr` flag
+
+This is a convenience flag to account for the fact that the code to derive [a "standard places response" (SPR)](https://github.com/whosonfirst/go-whosonfirst-spr) from a Who's On First (WOF) style document is very strict particularly about Extended DateTime Format (EDTF) dates. While there shouldn't be any invalid EDTF dates in WOF documents the reality is that sometimes there are. If you are comfortable with dropping (n) number of documents from your final GeoParquet file because it is easier or faster than tracking down and fixing errant dates you should use this flag._
+
+#### The `org://` iterator
+
+This tool was orginally designed to use the [whosonfirst/go-whosonfirst-iterator-organization](https://github.com/whosonfirst/go-whosonfirst-iterate-organization) package, which takes loops through all the relevant repositories in an organization to produce a single GeoParquet database for the set of all the records in those repositories. This is convenient if you want a single GeoParquet database of, say, all the `whosonfirst-data-admin-` repositories.
+
+Given that some databases, like DuckDB (details below), can load and process multiple GeoParquet databases in a single query it may not be necessary to produce a single "mono" database. That's your business. You can use any known (meaning that it's been imported in to your code) implementation `whosonfirst/go-whosonfirst-iterator/v2/iterator` interfaces with the `feature`t tool. For example to create a GeoParquet database of a local repository on disk you might do:
+
+```
+$> ./bin/features \
+	-as-spr \
+	-skip-invalid-spr \
+	-monitor-uri null:// \
+	-writer-uri 'constant://?val=featurecollection://?writer=stdout://' \
+	-iterator-uri repo:// \
+	/usr/local/data/whosonfirst-data-admin-ca \
+```
+
+As of this writing it is not currently possible to use the `whosonfirst/go-whosonfirst-iterator-organization` to loop through multiple repositories and create multiple per-respository outputs. 
+
+### DuckDB
 
 And the loading the `flights-2023.geoparquet` database in [DuckDB](https://duckdb.org/docs/extensions/spatial.html):
 
@@ -53,6 +77,8 @@ D SELECT "wof:name", ST_GeomFromWkb(geometry) AS geometry FROM read_parquet('fli
 │ 10 rows                                                           2 columns │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
+
+### Makefile
 
 There is also a handy `index` target in the Makefile for wrapping some of the details creating geoparquet files. For example, this:
 
