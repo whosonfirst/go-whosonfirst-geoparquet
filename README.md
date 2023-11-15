@@ -31,7 +31,7 @@ This is a convenience flag to account for the fact that the code to derive [a "s
 
 This tool was orginally designed to use the [whosonfirst/go-whosonfirst-iterator-organization](https://github.com/whosonfirst/go-whosonfirst-iterate-organization) package, which takes loops through all the relevant repositories in an organization to produce a single GeoParquet database for the set of all the records in those repositories. This is convenient if you want a single GeoParquet database of, say, all the `whosonfirst-data-admin-` repositories.
 
-Given that some databases, like DuckDB (details below), can load and process multiple GeoParquet databases in a single query it may not be necessary to produce a single "mono" database. That's your business. You can use any known (meaning that it's been imported in to your code) implementation `whosonfirst/go-whosonfirst-iterator/v2/iterator` interfaces with the `feature`t tool. For example to create a GeoParquet database of a local repository on disk you might do:
+Given that some databases, like DuckDB (details below), can load and process multiple GeoParquet databases in a single query it may not be necessary to produce a single "mono" database. That's your business. You can use any known  implementation of the [whosonfirst/go-whosonfirst-iterator/v2/iterator](https://github.com/whosonfirst/go-whosonfirst-iterate) interfaces (meaning that the relevant implementation been `import` -ed in to your code) with the `feature` tool. For example to create a GeoParquet database of a local repository on disk you might do:
 
 ```
 $> ./bin/features \
