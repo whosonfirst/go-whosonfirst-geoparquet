@@ -21,7 +21,7 @@ $> ./bin/features \
 	> flights-2023.geoparquet
 ```
 
-_Note the `-skip-invalid-spr` flag. This is a convenience flag to account for the fact that the code to derive a "standard places response" (SPR) from a Who's On First (WOF) style document is very strict particularly about Extended DateTime Format (EDTF) dates. While there shouldn't be any invalid EDTF dates in WOF documents the reality is that sometimes there are. If you are comfortable with dropping (n) number of documents from your final GeoParquet file because it is easier or faster than tracking down and fixing errant dates you should use this flag._
+_Note the `-skip-invalid-spr` flag. This is a convenience flag to account for the fact that the code to derive [a "standard places response" (SPR)](https://github.com/whosonfirst/go-whosonfirst-spr) from a Who's On First (WOF) style document is very strict particularly about Extended DateTime Format (EDTF) dates. While there shouldn't be any invalid EDTF dates in WOF documents the reality is that sometimes there are. If you are comfortable with dropping (n) number of documents from your final GeoParquet file because it is easier or faster than tracking down and fixing errant dates you should use this flag._
 
 And the loading the `flights-2023.geoparquet` database in [DuckDB](https://duckdb.org/docs/extensions/spatial.html):
 
@@ -119,6 +119,7 @@ D
 * https://github.com/whosonfirst/go-whosonfirst-iterate
 * https://github.com/whosonfirst/go-whosonfirst-iterate-organization
 * https://github.com/whosonfirst/go-writer-featurecollection
+* https://github.com/whosonfirst/go-whosonfirst-spr
 * https://github.com/planetlabs/gpq
 * https://duckdb.org/
 * https://duckdb.org/docs/extensions/spatial.html
