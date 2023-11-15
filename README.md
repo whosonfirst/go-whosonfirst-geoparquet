@@ -27,7 +27,7 @@ $> ./bin/features \
 
 #### The `-skip-invalid-spr` flag
 
-This is a convenience flag to account for the fact that the code to derive [a "standard places response" (SPR)](https://github.com/whosonfirst/go-whosonfirst-spr) from a Who's On First (WOF) style document is very strict particularly about Extended DateTime Format (EDTF) dates. While there shouldn't be any invalid EDTF dates in WOF documents the reality is that sometimes there are. If you are comfortable with dropping (n) number of documents from your final GeoParquet file because it is easier or faster than tracking down and fixing errant dates you should use this flag._
+This is a convenience flag to account for the fact that the code to derive [a "standard places response" (SPR)](https://github.com/whosonfirst/go-whosonfirst-spr) from a Who's On First (WOF) style document is very strict particularly about [Extended DateTime Format (EDTF) date strings](https://github.com/sfomuseum/go-edtf). While there shouldn't be any invalid EDTF dates in WOF documents the reality is that sometimes there are. If you are comfortable with dropping (n) number of documents from your final GeoParquet file because it is easier or faster than tracking down and fixing errant dates you should use this flag._
 
 #### The `org://` iterator
 
