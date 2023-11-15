@@ -1,14 +1,15 @@
 # go-whosonfirst-geoparquet
 
-Work in progress
+Go package to produce `planetlabs/gpq` -compatible input to generate GeoParquet files using the `whosonfirst/go-whosonfirst-iterwriter` and `whosonfirst/go-writer-featurecollection` packages.
 
 ## Example
 
-Used in conjunction with the [planetlabs/gpq](https://github.com/planetlabs/gpq) tool:
+Used in conjunction with the [planetlabs/gpq](https://github.com/planetlabs/gpq) tool. The hope is that [the internals of the `gpq` tool will be exposed as public-facing library code](https://github.com/planetlabs/gpq/issues/113) so that the final database can be written in a single command. That is still not possible today.
 
 ```
 $> ./bin/features \
 	-as-spr \
+	-skip-invalid-spr \
 	-monitor-uri null:// \
 	-writer-uri 'constant://?val=featurecollection://?writer=stdout://' \
 	-iterator-uri org:///tmp \
@@ -19,6 +20,8 @@ $> ./bin/features \
 	--to geoparquet \
 	> flights-2023.geoparquet
 ```
+
+_Note the `-skip-invalid-spr` flag. This is a convenience flag to account for the fact that the code to derive a "standard places response" (SPR) from a Who's On First (WOF) style document is very strict particularly about Extended DateTime Format (EDTF) dates. While there shouldn't be any invalid EDTF dates in WOF documents the reality is that sometimes there are. If you are comfortable with dropping (n) number of documents from your final GeoParquet file because it is easier or faster than tracking down and fixing errant dates you should use this flag._
 
 And the loading the `flights-2023.geoparquet` database in [DuckDB](https://duckdb.org/docs/extensions/spatial.html):
 
@@ -62,6 +65,7 @@ Will execute this:
 ```
 $> ./bin/features \
 		-as-spr \
+		-skip-invalid-spr \
 		-monitor-uri null:// \
 		-writer-uri 'constant://?val=featurecollection://?writer=stdout://' \
 		-iterator-uri org:///tmp \

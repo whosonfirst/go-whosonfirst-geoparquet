@@ -6,6 +6,7 @@ cli:
 index:
 	./bin/features \
 		-as-spr \
+		-skip-invalid-spr \
 		-monitor-uri null:// \
 		-writer-uri 'constant://?val=featurecollection://?writer=stdout://' \
 		-iterator-uri org:///tmp \
