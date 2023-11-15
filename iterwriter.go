@@ -23,6 +23,7 @@ type IterwriterCallbackFuncBuilderOptions struct {
 	AsSPR               bool
 	IncludeAltFiles     bool
 	AppendSPRProperties []string
+	SkipInvalidSPR      bool
 }
 
 func IterwriterCallbackFuncBuilder(opts *IterwriterCallbackFuncBuilderOptions) iterwriter.IterwriterCallbackFunc {
@@ -74,6 +75,12 @@ func IterwriterCallbackFuncBuilder(opts *IterwriterCallbackFuncBuilderOptions) i
 					s, err := spr.WhosOnFirstSPR(body)
 
 					if err != nil {
+
+						if opts.SkipInvalidSPR {
+							log.Printf("Failed to create SPR for %s, %w", path, err)
+							return nil
+						}
+
 						return fmt.Errorf("Failed to create SPR for %s, %w", path, err)
 					}
 

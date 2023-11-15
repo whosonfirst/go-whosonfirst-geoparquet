@@ -28,6 +28,7 @@ func RunWithFlagSet(ctx context.Context, fs *flag.FlagSet, logger *log.Logger) e
 		RequirePolygon:      require_polygons,
 		IncludeAltFiles:     include_alt_files,
 		AppendSPRProperties: spr_properties,
+		SkipInvalidSPR:      skip_invalid_spr,
 	}
 
 	cb := geoparquet.IterwriterCallbackFuncBuilder(cb_opts)
