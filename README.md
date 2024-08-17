@@ -4,6 +4,10 @@ Go package to produce `planetlabs/gpq` -compatible input to generate GeoParquet 
 
 _This should still be considered work in progress. Things are settling down but might still change._
 
+## Deprecated
+
+This package has been deprecated. Please see [whosonfirst/go-writer-geoparquet](https://github.com/whosonfirst/go-writer-geoparquet) and [whosonfirst/gpq-fork](https://github.com/whosonfirst/gpq-fork) for alternatives.
+
 ## Example
 
 Used in conjunction with the [planetlabs/gpq](https://github.com/planetlabs/gpq) tool. The hope is that [the internals of the `gpq` tool will be exposed as public-facing library code](https://github.com/planetlabs/gpq/issues/113) so that the final database can be written in a single command. That is still not possible today.
